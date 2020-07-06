@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="White"
+             xmlns:cake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             Shell.NavBarIsVisible="False"
+             Shell.PresentationMode="ModalNotAnimated"
+             x:Class="RssFeedReader.Views.RssDetailView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto, *, 50" VerticalOptions="FillAndExpand">
+            <cake:PancakeView VerticalOptions="FillAndExpand" Grid.Row="0" Margin="5,0,5,0" 
+                          BackgroundGradientAngle="270" BackgroundGradientEndColor="#AEB5B9" CornerRadius="0,0,10,10"
+                          BackgroundGradientStartColor="#575a5c" HasShadow="True" >
+                <Label Text="{Binding Article.Title}" Style="{StaticResource LabelStyle}"  LineBreakMode="WordWrap" />
+            </cake:PancakeView>
+            
+            <cake:PancakeView VerticalOptions="FillAndExpand" Grid.Row="2" Margin="5,5,5,5" 
+                          BackgroundGradientAngle="270" BackgroundGradientEndColor="#AEB5B9" CornerRadius="10,10,10,10"
+                          BackgroundGradientStartColor="#575a5c" HasShadow="True" >
+                <cake:PancakeView.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding CloseCommand}" />
+                </cake:PancakeView.GestureRecognizers>
+
+                <Label Text="Close" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="White" FontSize="Large" Margin="5,5,5,5"  />
+            </cake:PancakeView>
+            
+            <WebView Grid.Row="1" Source="{Binding Article.Url}" HeightRequest="1500" Margin="0,-5,0,0" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             x:Class="RssFeedReader.Controls.RssMainContent">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="PageLbStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+  <ContentView.Content>
+        <StackLayout Scale="0" x:Name="Stacker" Padding="5" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <cake:PancakeView BackgroundGradientStartColor="White" BackgroundGradientEndColor="White" 
+                                                 HorizontalOptions="FillAndExpand"    CornerRadius="10" HasShadow="True" BorderColor="LightGray">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5,5,5,5" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="{Binding Title}" Style="{StaticResource PageLbStyle}"  />
+                    <Label  Grid.Row="2"  Text="{Binding Summary}"  Style="{d:StaticResource PageLbStyle}"  
+                                                TextColor="Gray" FontSize="Small" LineBreakMode="WordWrap" />
+
+                    <Image Grid.Row="1" Source="{Binding ImageUrl}" Aspect="AspectFit" />
+                </Grid>
+            </cake:PancakeView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>
